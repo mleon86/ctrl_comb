@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}
+Acerca de la App
+{% endblock %}
+
+{% block contenido %}
+
+{% include "fragments/titulo.html" with titulo="Inicio" %}
+    
+{% include "fragments/card_start.html" with header="Bienvenido man!" %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit">Acceder</button>
+    </form>
+    {% include "fragments/card_finish.html" %}
+{% endblock %}
