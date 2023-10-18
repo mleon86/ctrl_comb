@@ -6,7 +6,15 @@
         <div class="bs-component">
             <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="#">MLDATA SOLUTIONS</a>
+                  {% comment %} <a class="navbar-brand" href="#">MLDATA SOLUTIONS</a> {% endcomment %}
+                  <div class="navbar-brand"
+                    hx-get = "{% url "core:home" %}"
+                    hx-push-url = "true"
+                    hx-trigger = "click"
+                    hx-target = "#body"
+                    hx-swap = "outerHTML"
+                    style = "cursor: pointer"> MLDATA SOLUTIONS
+                  </div>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -15,7 +23,7 @@
                       <li class="nav-item">
                         <a class="nav-link active" href="{% url "core:home" %}">Inicio
                           <span class="visually-hidden">(current)</span>
-                        </a>
+                        </a> 
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Registrar</a>
@@ -27,7 +35,13 @@
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catálogos</a>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">Marcas</a>
+                          <a class="dropdown-item" href="#"
+                          hx-get="{% url "control:mark_list" %}"
+                          hx-triger = "click"
+                          hx-target = "#body"
+                          hx-push-url="true"
+                          style="cursor:pointer"
+                          >Marcas</a>
                           <a class="dropdown-item" href="#">Modelos</a>
                           <a class="dropdown-item" href="#">Vehiculos</a>
                           {% comment %} <div class="dropdown-divider"></div>
