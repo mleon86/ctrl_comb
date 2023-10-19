@@ -7,10 +7,12 @@
     <title>{% block titulo %}App Ctrol Combustible Curso{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static "css/bootstrap_slate.min.css" %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 
 
 </head>
-<body id = "body">
+<body id="body" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <!-- Menu -->
     {% include "fragments/menu.html" %}
     <!--Fin Menu-->

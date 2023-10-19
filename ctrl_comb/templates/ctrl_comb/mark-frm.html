@@ -1,4 +1,5 @@
-<form  class="d-flex-align-item-venter" method="POST">
+<form hx-post = "{% url "control:mark_save" %}" hx-target = "#list"
+ class="d-flex-align-item-venter" method="POST">
     <fieldset>
         <div class="row">
             <div class="col-md-6">
@@ -13,7 +14,7 @@
                 <div class="form-group">
                     <label for="descript" class="form-label">Descripción</label>
                     <input type="text" class="form-control" id="id" aria-describedby="idhelp"
-                    name="descript" placeholder="Descripcion" readonly value="{{obj.descript}}">
+                    name="descript" placeholder="Descripcion" value="{{obj.descript}}">
                     <small id="descripthelp" class= "form-text text-muted">Descripcion</small>
                 </div>
             </div>

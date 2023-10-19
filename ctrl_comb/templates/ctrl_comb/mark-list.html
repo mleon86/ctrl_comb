@@ -9,13 +9,19 @@
         {% for o in obj %}
         <tr>
             <td>{{o.id}}</td>
-            <td>{{o.idescript}}</td>
+            <td>{{o.descript}}</td>
             <td>
                <i class="bi bi-trash3" 
                style="cursor:pointer;"
+               hx-delete="{% url "control:mark_delete" o.id %}"
+               hx-target="#list"
+               hx-confirm="Seguro que desea eliminar el registro?"
                ></i>
                <i class="bi bi-pencil-square" 
                style="cursor:pointer;"
+               style="cursor:pointer;"
+               hx-get="{% url "control:mark_edit" o.id %}"
+               hx-target="#frm"
                ></i>
             </td>
         </tr>
@@ -26,3 +32,7 @@
 {% else %}
 <p>No hay registros</p>
 {% endif %}
+
+<input type="text" class="form-control" id="id" aria-describedby="idhelp"
+        name="id" placeholder="id" readonly value="{{obj.id}}"
+        hr-swap-oob = "true">
