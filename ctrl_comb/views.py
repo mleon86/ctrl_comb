@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import *
+from django.urls import reverse_lazy
 
 from .models import *
 from .forms import *
@@ -64,3 +65,18 @@ def mark_edit(request, pk=None):
     context["obj"]=o
 
     return render(request, template_name, context)
+
+
+# Modelo
+class ModeloList(ListView):
+    template_name = "ctrl_comb/modelo.html"
+    model=Modelo
+    context_object_name = "obj"
+    ordering = ["mark","descript"]
+
+class ModeloNew(CreateView):
+    model = Modelo
+    template_name = "ctrl_comb/modelo_form.html"
+    context_object_name = "obj"
+    form_class = ModeloForm
+    success_url = reverse_lazy("control:modelo_list")

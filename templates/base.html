@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="{% static "css/bootstrap_slate.min.css" %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
+    {% comment %} DataTables {% endcomment %}
+    <link href="{% static "plugins/datatable/datatables.min.css" %}" rel="stylesheet">
+    <link href="{% static "plugins/datatable/Responsive-2.5.0/css/responsive.bootstrap5.min.css" %}" rel="stylesheet">
+
+
+
 
 
 </head>
@@ -33,8 +39,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="{% static "js/bootstrap.min.js" %}"></script>
+   
     <!-- <script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script> -->
     <script src = "{% static 'js/htmx.js' %}"></script>
+
+    <!--DataTables-->
+    <script src="{% static "plugins/datatable/datatables.min.js" %}"></script>
+    <script src="{% static "plugins/datatable/Buttons-2.4.2/js/buttons.bootstrap5.min.js" %}"></script>
+
+
+{% block js %}
+
+{% endblock js %}
+
+
+
     
 </body>
 </html> 

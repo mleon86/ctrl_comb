@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Acerca de la App
+{% endblock %}
+
+{% block contenido %}
+
+{% include "fragments/titulo.html" with titulo="Modelos Vehiculo" %}
+    
+    {% include "fragments/card_start.html" with header="Listado de Modelos de Vehículos" %}
+    <a href="{% url "control:modelo_new" %}" class="btn btn-sm btn-warning">
+        <i class="bi bi-plus-circle"></i>
+        Nuevo
+    </a>
+    <table id="tbl" class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Marca</th>
+                <th>Modelo</th>
+            </tr>
+        </thead>     
+        <tbody>
+            {% for o in obj%}
+            <tr>
+                <td></td>
+                <td>{{ o.mark.descript }}</td>
+                <td>{{ o.descript }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "fragments/card_finish.html" %}
+{% endblock %}
+
+{% block js %}
+{% include "fragments/datatable.html" %}
+{% endblock js %}

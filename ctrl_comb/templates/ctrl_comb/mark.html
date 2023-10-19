@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block titulo %}
 Acerca de la App
@@ -23,3 +24,7 @@ Acerca de la App
     </div>
     {% include "fragments/card_finish.html" %}
 {% endblock %}
+
+{% block js %}
+{% include "fragments/datatable.html" %}
+{% endblock js %}
