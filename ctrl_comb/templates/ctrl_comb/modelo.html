@@ -13,6 +13,9 @@ Acerca de la App
         <i class="bi bi-plus-circle"></i>
         Nuevo
     </a>
+    <button type="buttom" class="btn btn-info btn-sm" onclick="abrir_modal('{% url "control:modelo_new_modal" %}')">
+        <i class="bi bi-pencil-square"></i>
+    </button>
     <table id="tbl" class="table table-striped table-hover">
         <thead>
             <tr>
@@ -24,7 +27,21 @@ Acerca de la App
         <tbody>
             {% for o in obj%}
             <tr>
-                <td></td>
+                <td>
+                    <a href="{% url "control:modelo_edit" o.id %}" class="btn btn-info btn-sm">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a href="{% url "control:modelo_delete" o.id %}"class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                    <button type="buttom" class="btn btn-danger btn-sm" onclick="borrar({{o.id}},'{{o.descript}}')">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+
+                    <button type="buttom" class="btn btn-info btn-sm" onclick="abrir_modal('{% url "control:modelo_edit_modal" o.id %}')">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                </td>
                 <td>{{ o.mark.descript }}</td>
                 <td>{{ o.descript }}</td>
             </tr>
@@ -36,4 +53,47 @@ Acerca de la App
 
 {% block js %}
 {% include "fragments/datatable.html" %}
+<script>
+    function borrar(id,d)
+    {
+        Swal.fire({
+          title: 'Procedo?',
+          text: `Procedes a eliminar ${d}`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, borralo de la mapa!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            if (result.isConfirmed) {
+                var url = `{% url "control:modelo_list" %}delete/${id}`
+                $.ajax({
+                    headers:{"X-CSRFToken":"{{ csrf_token }}"},
+                    type:"POST",
+                    url:url,
+                    success: function(r,textStatus,xhr) {
+                        if(xhr.status==200){
+                            Swal.fire(
+                                "Borrado",
+                                `${d} Borrado satisfactoriamente`,
+                                "success"
+                            ).then(
+                                function(){
+                                    location.reload()
+                                }
+                            )
+                        }
+                    },
+                    error: function(jqXHR, textStatus,error){
+                        Swal.fire("Error",textStatus,"error")
+                    }
+                })
+            }
+        }
+        })
+    }
+</script>
+
+
 {% endblock js %}

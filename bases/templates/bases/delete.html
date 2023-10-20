@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Acerca de la App
+{% endblock %}
+
+{% block contenido %}
+<form action="" method="post">
+    {% csrf_token %}
+
+    {% include "fragments/titulo.html" with titulo="Borrar" %}
+
+    {% include "fragments/card_start.html" with header="Borrar!" %}
+    Eiminar {{obj}}?
+    <button type="submit" class="btn btn-danger"><i class="far fa-question-circle"></i>Si, Eliminar</button>
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-succes btn-sm">
+        <span class="fa-undo"></span>No, Cancelar
+    </a>
+
+    {% include "fragments/card_finish.html" %}
+</form>
+
+{% endblock %}
