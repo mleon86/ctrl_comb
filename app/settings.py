@@ -177,13 +177,20 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
+    "google": {
+        "APP": {
+            "client_id": "311485894199-q471u7oikckds6cvj069n15n8metk7kh.apps.googleusercontent.com", #os.getenv("GOOGLE_CLIENT_ID"),
+            "secret": "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", #os.getenv("GOOGLE_SECRET_KEY"),
+            "key": ""
+        },
+        # These are provider-specific settings that can only be
+        # listed here:
+        "SCOPE": [
+            "profile",
+            "email",
         ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
+        "AUTH_PARAMS": {
+            "access_type": "online",
         }
     }
 }

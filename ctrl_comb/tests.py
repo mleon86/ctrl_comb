@@ -27,3 +27,20 @@ class ModeloTests(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Rush")
         self.assertTemplateUsed(response, "ctrl_comb/modelo.html") 
+
+
+    def test_vista_mark(self):
+        response = self.client.get(reverse("control:mark_list"))
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"Toyota")
+        self.assertTemplateUsed(response, "ctrl_comb/mark.html") 
+
+    def test_crear_modelo(self):
+        response = self.client.get(reverse("control:modelo_new_modal"))
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response,"ctrl_comb/modelo_modal.html")
+
+
+
+
+
