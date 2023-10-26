@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from .models import Mark, Modelo
 
+
 class ModeloTests(TestCase):
     @classmethod
     def setUpTestData(clase):
@@ -35,12 +36,28 @@ class ModeloTests(TestCase):
         self.assertContains(response,"Toyota")
         self.assertTemplateUsed(response, "ctrl_comb/mark.html") 
 
-    def test_crear_modelo(self):
+    def test_crear_modelo_por_el_modal(self):
         response = self.client.get(reverse("control:modelo_new_modal"))
         self.assertEqual(response.status_code,200)
+        self.assertContains(response,"Modal title")
         self.assertTemplateUsed(response,"ctrl_comb/modelo_modal.html")
+        
+        #sabemos que hay un solo elemento
+        self.assertEqual(Modelo.objects.count(),1)
+        
+        #Creamos lo que se enviará por POST
+        mark_pk = Mark.objects.get(pk=1).pk
+        data = {
+            "mark": mark_pk,
+            "descript":"ookkr"
+        }
+        #lo enviamos por post
+        response = self.client.post(reverse("control:modelo_new_modal"), data=data)
+        
+        #verificamos que nos redirecciona a otra pagina
+        self.assertEqual(response.status_code, 302)
+        
+        #verificamos que ya hay dos elementos en la bd de test
+        self.assertEqual(Modelo.objects.count(),2)
 
-
-
-
-
+        

@@ -10,6 +10,7 @@ class CustomUserTest(TestCase):
     def test_crear_usuario(self):
         Usr = get_user_model()
         usr = Usr.objects.create_user(
+            first_name = "cho",
             username = "lll",
             email = "lll@lll.com",
             password = "123"
@@ -25,6 +26,7 @@ class CustomUserTest(TestCase):
     def test_crear_superusuario(self):
         Usr = get_user_model()
         usr = Usr.objects.create_superuser(
+            first_name="cho",
             username = "lll",
             email = "lll@lll.com",
             password = "123"
@@ -50,7 +52,7 @@ class RegistroUsuarioTest(TestCase):
     
     def test_registro_form(self):
         form = self.response.context.get("form")
-        self. assertIsInstance(form, CustomUserCreationForm)
+        self.assertIsInstance(form, CustomUserCreationForm)
         self.assertContains(self.response, "csrfmiddlewaretoken")
 
     def test_registro_vista(self):
